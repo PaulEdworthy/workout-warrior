@@ -16,8 +16,8 @@ class MainApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: primary,
       ),
+      debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
     );
   }
 }
-

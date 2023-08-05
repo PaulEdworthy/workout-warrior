@@ -26,21 +26,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   ];
   List<String> selected = [];
 
-  // controller allows us access to the text field
-  final _controller = TextEditingController();
-
-  void addExercises() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          controller: _controller,
-          onSave: saveExercise,
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +42,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             ),
             const SizedBox(height: 48.0),
             const Text(
-              'By Target Muscle',
+              'SELECT WORKOUT BY',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
@@ -76,18 +61,11 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     selected = value;
                   });
                 },
-                whenEmpty: 'Select by Muscle Group',
+                whenEmpty: 'Muscle Group',
               ),
             ),
             const SizedBox(height: 24.0),
-            const Text(
-              'OR',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 24.0),
+
             const Text(
               'By Exercises',
               style: TextStyle(
@@ -95,16 +73,30 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 16.0),
-            const Padding(
-              padding: EdgeInsets.only(left: 24.0, right: 24.0),
-              // child: TextField(
-              //   decoration: InputDecoration(
-              //     hintText: 'Start Typing by Body Part',
-              //   ),
-              // ),
-              child: ElevatedButton(onPressed: addExercises()),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('This is a fullscreen dialog.'),
+                  const SizedBox(height: 15),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Close'),
+                  ),
+                ],
+              ),
             ),
+
+            // child: TextField(
+            //   decoration: InputDecoration(
+            //     hintText: 'Start Typing by Body Part',
+            //   ),
+            // ),
           ],
         ),
         // TODO Muscle Groups Being worked
